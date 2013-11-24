@@ -273,7 +273,18 @@ cmake_tar_dir="cmake-${cmake_version}"
 opencv_version="2.4.7"
 opencv_dir="OpenCV-${opencv_version}"
 opencv_file="${opencv_dir}.tar.gz"
+
+
+
 opencv_url="https://s3.amazonaws.com/nerdglasses/opencv/${opencv_dir}.tar.gz"
+
+echo "opencv_url: ${opencv_url}"
+echo "opencv_file: ${opencv_file}"
+
+echo "Compiling OpenCV v${opencv_version}..." | indent
+#Compile OpenCV
+curl -s ${opencv_url} > ${opencv_file}
+tar xf ${opencv_file}
 
 cache_target=${cache}/${cmake_file}
 build_target=${build}/.heroku
@@ -308,6 +319,9 @@ target=/app/.heroku
 if [ ! -f ${cache_target} ]; then
   echo "No cached compile detected. Bulding..." | indent
   cd $build
+
+  echo "opencv_url: ${opencv_url}"
+  echo "opencv_file: ${opencv_file}"
 
   echo "Compiling OpenCV v${opencv_version}..." | indent
   #Compile OpenCV
