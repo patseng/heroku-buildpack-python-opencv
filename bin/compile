@@ -1,37 +1,5 @@
-#!/usr/bin/env bash
-
-# This script serves as the
-# [**Python Buildpack**](https://github.com/heroku/heroku-buildpack-python)
-# compiler.
-#
-# A [buildpack](http://devcenter.heroku.com/articles/buildpacks) is an
-# adapter between a Python application and Heroku's runtime.
-#
-# You can intreract with the Heroku API directly with [heroku.py](https://github.com/heroku/heroku.py/).
-#
-# See also: [Release history](/changelog.html), [Detection](/detect.html).
-#
-# ## Usage
-# Compiling an app into a slug is simple:
-#
-#     $ bin/compile <build-dir> <cache-dir>
-
-
-# ## Assumptions
-#
-# This buildpack makes the following assumptions:
-#
-# - The desired Python VM is available on the base system.
-# - Library dependencies are available on the base system.
-# - Django applications should not require any platform-specific configuration.
-
-# <hr />
-
-# ## Context
-
 # Fail fast and fail hard.
 set -eo pipefail
-
 # Prepend proper path for virtualenv hackery. This will be deprecated soon.
 export PATH=:/usr/local/bin:$PATH
 
@@ -274,7 +242,7 @@ opencv_version="2.4.5"
 opencv_dir="opencv-${opencv_version}"
 opencv_file="${opencv_dir}.tar.gz"
 # https://s3.amazonaws.com/nerdglasses/opencv/OpenCV-2.4.2.tar.bz2
-opencv_url="https://s3.amazonaws.com/nerdglasses/opencv/${opencv_dir}.tar.bz2"
+opencv_url="https://s3.amazonaws.com/nerdglasses/opencv/${opencv_dir}.tar.gz"
 
 cache_target=${cache}/${cmake_file}
 build_target=${build}/.heroku
