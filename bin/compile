@@ -271,7 +271,7 @@ cmake_file="cmake-${cmake_version}.tar.gz"
 cmake_tar_dir="cmake-${cmake_version}"
 
 opencv_version="2.4.7"
-opencv_dir="OpenCV-${opencv_version}"
+opencv_dir="opencv-${opencv_version}"
 opencv_file="${opencv_dir}.tar.gz"
 opencv_url="https://s3.amazonaws.com/nerdglasses/opencv/${opencv_dir}.tar.gz"
 
