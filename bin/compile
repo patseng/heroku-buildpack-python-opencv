@@ -273,6 +273,7 @@ cmake_tar_dir="cmake-${cmake_version}"
 opencv_version="2.4.2"
 opencv_dir="OpenCV-${opencv_version}"
 opencv_file="${opencv_dir}.tar.gz"
+# https://s3.amazonaws.com/nerdglasses/opencv/OpenCV-2.4.2.tar.bz2
 opencv_url="https://s3.amazonaws.com/nerdglasses/opencv/${opencv_dir}.tar.bz2"
 
 cache_target=${cache}/${cmake_file}
@@ -316,7 +317,7 @@ if [ ! -f ${cache_target} ]; then
   cd ${opencv_dir}
   mkdir build
   cd build
-  cmake -DCMAKE_INSTALL_PREFIX=${target} -DCMAKE_FIND_ROOT_PATH=${target} -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=OFF -DCMAKE_SHARED_LINKER_FLAGS="-fPIC" .. | indent
+  cmake -DCMAKE_INSTALL_PREFIX=${target} -DCMAKE_FIND_ROOT_PATH=${target} -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=OFF .. | indent
   make install | indent
   cd ..
 
