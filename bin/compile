@@ -317,7 +317,8 @@ if [ ! -f ${cache_target} ]; then
   cd ${opencv_dir}
   mkdir build
   cd build
-  cmake -DCMAKE_INSTALL_PREFIX=${target} -DCMAKE_FIND_ROOT_PATH=${target} .. | indent
+
+  cmake -DBUILD_SHARED_LIBS=OFF DCMAKE_SHARED_LINKER_FLAGS="-fPIC" -DBUILD_DOCS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DWITH_OPENEXR=OFF -DCMAKE_FIND_ROOT_PATH=${target} -DCMAKE_INSTALL_PREFIX=${target} .. | indent
   make install | indent
   cd ..
 
