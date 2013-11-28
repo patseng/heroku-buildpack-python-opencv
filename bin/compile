@@ -251,7 +251,7 @@ target=/app/.heroku
 if [ ! -f ${cache_target} ]; then
   echo "No cached compile detected. Bulding..." | indent
   cd $build
-  
+
   echo "Compiling cmake v${cmake_version}..." | indent
   #Compile cmake
   curl -s ${cmake_url} > ${cmake_file}
@@ -281,11 +281,16 @@ if [ ! -f ${cache_target} ]; then
   echo "Compiling OpenCV v${opencv_version}..." | indent
   #Compile OpenCV
   curl -s ${opencv_url} > ${opencv_file}
+  echo "*****Curled*****"
   tar xf ${opencv_file}
+  echo "****Tarred*****"
   cd ${opencv_dir}
+  echo "Working Directory:"
+  echo ${opencv_dir}
   mkdir build
   cd build
 
+  echo "****cmake****"
   cmake -DBUILD_SHARED_LIBS=NO DCMAKE_SHARED_LINKER_FLAGS="-fPIC" -DBUILD_DOCS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DWITH_OPENEXR=OFF -DCMAKE_FIND_ROOT_PATH=${target} -DCMAKE_INSTALL_PREFIX=${target} .. | indent
   make install | indent
   cd ..
