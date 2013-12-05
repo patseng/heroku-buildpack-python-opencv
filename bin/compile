@@ -290,12 +290,17 @@ if [ ! -f ${cache_target} ]; then
   echo "****Tarred*****"
   cd ${opencv_dir}
   echo "Working Directory:"
+  pwd
+
+  echo "OpenCV Directory:"
   echo ${opencv_dir}
   mkdir build
   cd build
 
   echo "****cmake****"
   cmake -DBUILD_SHARED_LIBS=NO DCMAKE_SHARED_LINKER_FLAGS="-fPIC" -DBUILD_DOCS=OFF -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DWITH_OPENEXR=OFF -DCMAKE_FIND_ROOT_PATH=${target} -DCMAKE_INSTALL_PREFIX=${target} .. | indent
+
+  echo "*****make********"
   make install | indent
   cd ..
 
